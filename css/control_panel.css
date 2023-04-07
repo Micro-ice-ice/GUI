@@ -1,0 +1,35 @@
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; /* Оставляем 10% места для кнопки */
+    background-color: #fff;
+}
+
+.btn-control-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto; /* Устанавливаем ширину кнопки в 3% */
+    height: auto; /* Занимаем всю высоту родительского контейнера */
+    transition: left 0.3s ease-in-out;
+}
+
+.control-panel {
+    position: absolute;
+    top: 0;
+    left: -22%; /* Панель будет скрыта за левой границей экрана */
+    width: 22%; /* Ширина панели будет равна 7/24 от ширины canvas */
+    height: 100%;
+    border-right: 1px solid #ccc;
+    transition: left 0.3s ease-in-out; /* Анимация при выдвижении/задвижении панели */
+}
+
+.control-panel.show {
+    left: 0; 
+}
+
+.btn-control-panel.show{
+    left: 22%;    
+}

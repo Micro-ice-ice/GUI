@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/control_panel.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="control-panel" class="control-panel">
+        <div class="content">
+            <button>Button 1</button>
+            <button>Button 2</button>
+            <input type="text" placeholder="Enter text...">
+        </div>
+    </div>
+    <button id="btn-control-panel" class="btn-control-panel btn btn-dark">></button>
+
+    <script>
+        let toggleButton = document.getElementById('btn-control-panel');
+        let controlPanel = document.getElementById('control-panel');
+        toggleButton.addEventListener('click', function () {
+            controlPanel.classList.toggle('show');
+            toggleButton.classList.toggle('show');
+        });
+    </script>
+
+    <canvas id="canvas"></canvas>
+    <script type="module" src="src/main.ts"></script>
+</body>
+
+</html>
