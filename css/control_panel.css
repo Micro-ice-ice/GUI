@@ -33,3 +33,9 @@
 .btn-control-panel.show{
     left: 22%;    
 }
+
+#ButtonSendRequest {
+    margin: 0 auto;
+    margin-top: 1em;
+    display: block;
+}

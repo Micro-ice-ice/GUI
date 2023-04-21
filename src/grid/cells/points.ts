@@ -5,7 +5,7 @@ import * as THREE from "three"
 
 export class Points extends Cell {
 
-    public static Material = new THREE.PointsMaterial({
+    public static Material: THREE.PointsMaterial = new THREE.PointsMaterial({
         vertexColors: true
     });
 
@@ -17,18 +17,16 @@ export class Points extends Cell {
 
         super(nodes, value);
 
-        const vertices = ([] as number[]).concat(...this.Nodes.map((node: Node) => node.toArray()));
-
-        const colors: number[] = [];
-
-        for (let i = 0; i < this.Nodes.length; ++i) {
-
-            colors.push(Math.random(), Math.random(), Math.random());
-        }
-
-        this.Geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-        this.Geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-
         this.ThreeObject = new THREE.Points(this.Geometry, Points.Material);
+    }
+
+    public get Type() {
+
+        return Points.Type;
+    }
+
+    protected get Indices() {
+
+        return Points.Indices;
     }
 } 

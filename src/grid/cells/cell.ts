@@ -1,29 +1,59 @@
 import { Node } from "../node";
-import { Attribute } from "../values/attribute";
+// import { Attribute } from "../values/attribute";
 import { Scalar } from "../values/scalar";
 import { Value } from "../values/value";
 import * as THREE from "three"
 
 export class Cell {
 
-    public static Material: THREE.Material;
+    protected static readonly Indices: number[] = [];
 
-    public static Type: number = 0;
+    public static Material: THREE.Material = new THREE.MeshLambertMaterial({
+        vertexColors: true,
+        side: THREE.FrontSide,
+        wireframe: true
+    });
+
+    public static readonly Type: number = 0;
 
     public Value: Value;
 
     public Nodes: Node[];
 
-    public ThreeObject: THREE.Object3D = new THREE.Object3D();
+    public ThreeObject: THREE.Object3D;
 
     public Geometry: THREE.BufferGeometry = new THREE.BufferGeometry();
 
     constructor(nodes: Node[], value: Value) {
+
         this.Nodes = nodes;
         this.Value = value;
-        //this.Type = type;
-        // this.ThreeObject = new THREE.Object3D();
-        // this.Geometry = new THREE.BufferGeometry();
+
+        const vertices = ([] as number[]).concat(...this.Nodes.map((node: Node) => node.toArray()));
+
+        const colors: number[] = [];
+
+        for (let i = 0; i < this.Nodes.length; ++i) {
+
+            colors.push(0, 0, 1);
+        }
+
+        this.Geometry.setIndex(this.Indices)
+        this.Geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        this.Geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        this.Geometry.computeVertexNormals()
+
+        this.ThreeObject = new THREE.Mesh(this.Geometry, Cell.Material);
+    }
+
+    public get Type() {
+
+        return Cell.Type;
+    }
+
+    protected get Indices() {
+
+        return Cell.Indices;
     }
 
     public SetColorByValueInNodes(attribute_index: number) {

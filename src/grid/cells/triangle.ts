@@ -5,35 +5,29 @@ import * as THREE from "three"
 
 export class Triangle extends Cell {
 
-    public static Material = new THREE.MeshBasicMaterial({
-        vertexColors: true,
-        side: THREE.DoubleSide
-    });
+    // public static Material = new THREE.MeshBasicMaterial({
+    //     vertexColors: true,
+    //     side: THREE.DoubleSide
+    // });
+
+    protected static readonly Indices = [0, 1, 2];
 
     public static Type: number = 5;
-
-    public ThreeObject: THREE.Mesh;
 
     constructor(nodes: Node[], value: Value) {
 
         super(nodes, value);
 
-        const vertices = ([] as number[]).concat(...this.Nodes.map((node: Node) => node.toArray()));
+    }
 
-        const indicies: number[] = [0, 1, 2];
+    public get Type() {
 
-        const colors: number[] = [];
+        return Triangle.Type;
+    }
 
-        for (let i = 0; i < this.Nodes.length; ++i) {
+    protected get Indices() {
 
-            colors.push(Math.random(), Math.random(), Math.random());
-        }
-
-        this.Geometry.setIndex(indicies);
-        this.Geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-        this.Geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-
-        this.ThreeObject = new THREE.Mesh(this.Geometry, Triangle.Material);
+        return Triangle.Indices;
     }
 
 } 
