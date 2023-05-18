@@ -4,9 +4,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as CellType from './grid/cells/cell_type'
 import { Node } from './grid/node';
 import { Value } from './grid/values/value';
-// import { Attribute } from './grid/values/attribute';
 import { Grid } from './grid/grid';
-// import { Scalar } from './grid/values/scalar';
+import GridJson from './data/ventical.json'
 
 //dat gui
 const params = {
@@ -16,40 +15,15 @@ const params = {
 const gui = new dat.GUI();
 gui.add(params, "wireframe")
 
-//
-const button: any = document.querySelector("#ButtonSendRequest");
-button.addEventListener("click", sendRequest);
-function sendRequest() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://127.0.0.1:8000/filename=ventrical.vtk");
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            group.children.forEach(child => {
-                const mesh = child as THREE.Mesh;
-                mesh.geometry.dispose();
-            })
-            group.clear();
-            //console.log(xhr.responseText);
-            const json_string = xhr.responseText;
-            const grid = new Grid(json_string);
-            //console.log(grid.cells);
-            //console.log(grid.Cells[0]);
-            for (let i = 0; i < grid.Cells.length; ++i) {
-                const mesh = grid.Cells[i].ThreeObject;
-                group.add(mesh);
-            }
-
-            console.log(grid.Cells[0].Value);
-            grid.Cells.forEach(cell => {
-                cell.SetColorByValueInCell(0);
-            })
-        }
-
-    };
-    xhr.send();
-}
-
 const group = new THREE.Group();
+
+const grid = new Grid(JSON.stringify(GridJson));
+//console.log(grid.cells);
+//console.log(grid.Cells[0]);
+for (let i = 0; i < grid.Cells.length; ++i) {
+    const mesh = grid.Cells[i].ThreeObject;
+    group.add(mesh);
+}
 
 const width = window.innerWidth;
 const height = window.innerHeight;
