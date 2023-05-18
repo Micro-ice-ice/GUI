@@ -18,8 +18,6 @@ gui.add(params, "wireframe")
 const group = new THREE.Group();
 
 const grid = new Grid(JSON.stringify(GridJson));
-//console.log(grid.cells);
-//console.log(grid.Cells[0]);
 for (let i = 0; i < grid.Cells.length; ++i) {
     const mesh = grid.Cells[i].ThreeObject;
     group.add(mesh);
@@ -56,41 +54,6 @@ light.position.set(...camera.position.toArray());
 scene.add(light);
 
 
-
-
-// const g = new THREE.PlaneGeometry();
-// const m = new THREE.MeshBasicMaterial();
-
-// g.computeVertexNormals
-
-// console.log(g.attributes)
-
-// const mesh = new THREE.Mesh(g, m);
-// scene.add(mesh)
-
-// mesh.geometry.dispose
-
-// let v = new Value();
-
-// const nodes = [
-//     new Node(-1, -1, -1, v),
-//     new Node(1, -1, -1, v),
-//     new Node(-1, 1, -1, v),
-//     new Node(1, 1, -1, v),
-//     new Node(-1, -1, 1, v),
-//     new Node(1, -1, 1, v),
-//     new Node(-1, 1, 1, v),
-//     new Node(1, 1, 1, v),
-// ]
-
-// const vox = new CellType.Voxel(nodes, v);
-
-// scene.add(vox.ThreeObject);
-
-// console.log(vox.Geometry)
-
-
-
 animate();
 
 function animate() {
@@ -101,7 +64,7 @@ function animate() {
     if ("wireframe" in CellType.Cell.Material) {
         CellType.Cell.Material.wireframe = params.wireframe
     }
-    //CellType.Cell.Material = new THREE.MeshNormalMaterial();
+
     render();
 
 
