@@ -1,22 +1,2 @@
-<h1>GUI для визуализации рассчетных сеток</h1>
+<h1>Library development is now underway in this repository https://github.com/Micro-ice-ice/tmv</h1>
 
-<p>
-    В данном проекте реализуется прототип библиотеки для визуализации
-    <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82%D0%BD%D0%B0%D1%8F_%D1%81%D0%B5%D1%82%D0%BA%D0%B0">сеток</a>
-</p>
-<p>
-    Библиотека построена на основе 
-    <a href="https://threejs.org/">Three.js</a>
-</p>
-<p>
-    В качестве примера реализована функциональность отправки на локальный сервер запроса, результатом которого является сетка в формате json, которая в дальнейшем отрисовывается
-</p>
-
-<p>
-    запуск проекта npm run dev
-</p>
-
-<h2>Сетка (модель правого желудочка):</h2>
-
-<img src="https://ltdfoto.ru/images/2023/05/15/result.png"/>
-<img src="https://ltdfoto.ru/images/2023/05/15/result2.png">
